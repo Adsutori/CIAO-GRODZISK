@@ -1,0 +1,725 @@
+
+```
+Create a complete, single-file HTML page (with embedded CSS and JS)
+for an Italian restaurant called **CIAO** located in Grodzisk.
+The entire page content must be in **Polish language**.
+
+The visual style should be:
+- Elegant, minimalist, modern — inspired by moody Neapolitan 
+  street photography aesthetics
+- Dark, warm, cinematic — like a late-night trattoria in Napoli
+- Italian soul: terracotta, warm cream, deep espresso tones
+- NOT a generic food delivery template — this is a premium 
+  dining experience website / digital business card
+
+---
+
+## 🎨 DESIGN SYSTEM
+
+### Color Palette (CSS custom properties):
+--color-bg:         #0d0b09   (deep espresso black)
+--color-bg-warm:    #141008   (warm dark brown-black)
+--color-surface:    #1c1710   (card/section surface)
+--color-border:     rgba(210,175,120,0.12)
+--color-text:       #f0e8d8   (warm cream white)
+--color-muted:      #8a7a62   (aged parchment gray)
+--color-accent:     #c8922a   (Italian amber/gold)
+--color-accent2:    #b61f1f   (logo red — from SVG)
+--color-highlight:  #e8c878   (warm gold highlight)
+
+### Typography (Google Fonts):
+- Display/Logo: 'Cormorant Garamond' — 
+  elegant Italian serif, thin weight
+- Headings: 'Playfair Display' — editorial serif
+- Body/Nav: 'Raleway' — clean, wide-tracked sans
+- Menu prices/labels: 'Raleway' monospace-feel, 
+  uppercase, tracked
+
+### Atmosphere Rules:
+- Grain/noise texture overlay on ALL sections 
+  (CSS pseudo-element with SVG noise filter, opacity: 0.04)
+- Vignette on hero: radial-gradient overlay 
+  (dark edges, bright center)
+- Warm amber glow blobs: CSS radial-gradient 
+  positioned at corners/edges
+- All transitions: slow, 0.6–1.2s ease
+- NO sharp edges — border-radius: 2px–4px max
+- Dividers: thin 1px lines in --color-border
+- Section padding: 100–140px vertical
+
+---
+
+## 🖼️ VISUAL BACKGROUNDS — CSS ART (no external images)
+
+Since we cannot use external image URLs, create atmospheric
+CSS-only backgrounds for each section:
+
+**Hero background:**
+background:
+  radial-gradient(ellipse at 30% 60%,
+    rgba(184,100,30,0.18) 0%, transparent 60%),
+  radial-gradient(ellipse at 75% 20%,
+    rgba(182,31,31,0.10) 0%, transparent 50%),
+  radial-gradient(ellipse at 50% 100%,
+    rgba(200,146,42,0.12) 0%, transparent 40%),
+  #0d0b09;
+
+**"Napoli street" decorative CSS art panel:**
+Create a tall vertical decorative element evoking
+Neapolitan palazzo architecture:
+- Tall narrow rectangle with rounded arch top
+- Warm amber/terracotta border: 
+  1px solid rgba(200,146,42,0.3)
+- Inner gradient: 
+  linear-gradient(180deg, #3a1a08 0%, #0d0b09 100%)
+- Box-shadow: 0 0 40px rgba(200,146,42,0.08) inset
+- Decorative horizontal lines inside 
+  (like shuttered window slats) using 
+  repeating-linear-gradient
+- Place 2–3 of these panels as background decoration
+  in the hero and about sections
+- They should be position: absolute, low opacity (0.4),
+  non-interactive (pointer-events: none)
+
+**"Pizza/food" abstract CSS art:**
+In the featured dish section, create a circular CSS element:
+- Large circle (400px) with warm gradient:
+  radial-gradient(circle, #3d1a05 0%, #1a0a02 60%, 
+  transparent 100%)
+- Concentric ring borders using box-shadow:
+  0 0 0 1px rgba(200,146,42,0.15),
+  0 0 0 20px rgba(200,146,42,0.05),
+  0 0 0 40px rgba(200,146,42,0.03)
+- Slow rotation animation: @keyframes slowRotate
+  transform: rotate(360deg), duration: 60s linear infinite
+- This evokes a pizza/plate without being literal
+
+---
+
+## 🏗️ PAGE STRUCTURE
+
+### 1. LOGO SVG — embed inline
+
+Embed this exact SVG as the site logo in the navbar
+and in the footer. The SVG contains:
+- A red triangle/mountain shape (class st0, fill #B61F1F)
+- A black rectangle band (class st1)
+- White text "CIAO" inside the band (class st2)
+
+Inline SVG code to embed:
+<svg viewBox="0 0 311.811 239.897" 
+     xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .st0{fill:#B61F1F;}
+    .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#1D1D1B;}
+    .st2{fill:#FFFFFF;}
+  </style>
+  <g>
+    <path d="M155.898,0L36.503,206.811l0.491,0.282
+      c37.697,21.771,77.708,32.804,118.908,32.804
+      c41.207,0,81.217-11.033,118.908-32.804l0.498-0.282
+      L155.898,0z" class="st0"/>
+    <rect height="113.863" width="311.811" 
+      class="st1" y="73.023"/>
+    <g>
+      <path d="M17.459,130.01c0-22.702,18.441-41.143,
+        41.147-41.143c11.291,0,21.547,4.61,29.04,12.1
+        l-18.097,17.98c-2.766-2.766-6.681-4.611-10.943-4.611
+        c-8.646,0-15.675,7.033-15.675,15.674
+        c0,8.533,7.029,15.563,15.675,15.563
+        c4.263,0,8.177-1.732,10.943-4.611l18.097,18.093
+        c-7.493,7.377-17.749,11.986-29.04,11.986
+        C35.9,171.041,17.459,152.718,17.459,130.01z" 
+        class="st2"/>
+      <path d="M102.879,169.428V90.481h23.398v78.947H102.879z" 
+        class="st2"/>
+      <path d="M137.94,169.428l35.38-81.37l35.496,81.37h-25.123
+        l-1.496-4.033h-17.639l-1.497,4.033H137.94z
+        M168.131,155.714h10.373l-5.185-13.947L168.131,155.714z" 
+        class="st2"/>
+      <path d="M212.064,130.01c0-22.702,18.44-41.143,
+        41.142-41.143c22.707,0,41.145,18.441,41.145,41.143
+        c0,22.707-18.437,41.031-41.145,41.031
+        C230.504,171.041,212.064,152.718,212.064,130.01z
+        M268.769,130.01c0-8.64-6.917-15.674-15.563-15.674
+        c-8.646,0-15.557,7.033-15.557,15.674
+        c0,8.533,6.911,15.563,15.557,15.563
+        C261.852,145.573,268.769,138.543,268.769,130.01z" 
+        class="st2"/>
+    </g>
+  </g>
+</svg>
+
+Logo sizing in navbar: height: 36px, width: auto
+Logo sizing in footer: height: 64px, width: auto
+
+---
+
+### 2. NAVIGATION BAR
+
+- Fixed top, full-width
+- Default: fully transparent
+- On scroll >60px: 
+  background: rgba(13,11,9,0.92),
+  backdrop-filter: blur(20px),
+  border-bottom: 1px solid rgba(210,175,120,0.08)
+- Left: inline SVG logo (height: 36px)
+- Center links (desktop): 
+  O nas · Menu · Rezerwacja · Kontakt
+  - Font: Raleway, 11px, uppercase, letter-spacing: 0.2em
+  - Color: --color-muted, hover: --color-accent
+  - Transition: color 0.4s ease
+- Right: CTA button "Zarezerwuj stolik"
+  - Border: 1px solid rgba(200,146,42,0.5)
+  - Background: transparent
+  - Hover: background: rgba(200,146,42,0.1)
+  - Font: Raleway, 11px, uppercase, tracked
+- Mobile: hamburger (3 lines, amber color) →
+  full-screen overlay menu:
+  background: #0d0b09,
+  large centered links (Playfair Display, 36px),
+  fade + slide-down animation
+
+---
+
+### 3. HERO SECTION
+
+- Full viewport height (100vh)
+- Background: CSS gradient as defined above
+- Decorative palazzo panels: 2 tall arch shapes,
+  positioned absolute left and right, opacity: 0.35
+- Centered content layout:
+
+  TOP LABEL:
+  "Grodzisk Mazowiecki · od 2018" 
+  font: Raleway 10px, uppercase, letter-spacing: 0.35em,
+  color: --color-accent, margin-bottom: 32px
+
+  MAIN HEADLINE:
+  "Smak Neapolu
+   w sercu Grodziska."
+  font: Cormorant Garamond, 80–100px (clamp: 10vw),
+  font-weight: 300, line-height: 1.1,
+  color: --color-text,
+  "Neapolu" → color: --color-accent (amber)
+
+  SUBTEXT:
+  "Prawdziwa pizza neapolitańska, świeże makarony
+   i włoska dusza — przy każdym stoliku."
+  font: Raleway, 16px, color: --color-muted,
+  max-width: 480px, line-height: 1.8,
+  margin: 24px auto 48px
+
+  TWO BUTTONS:
+  1. "Zobacz menu" — filled: background --color-accent,
+     color: #0d0b09, font-weight: 600,
+     padding: 14px 36px, no border-radius (or 2px max)
+  2. "Zarezerwuj stolik" — ghost: border 1px solid
+     rgba(240,232,216,0.3), color: --color-text,
+     same padding, hover: border-color --color-accent
+
+- Bottom: scroll indicator
+  "↓ przewiń" — Raleway 10px, tracked, muted color,
+  position: absolute bottom 40px,
+  CSS bounce animation (translateY loop)
+
+- Slow ambient animation: 
+  @keyframes ambientGlow — the amber radial gradient
+  slowly shifts position (background-position or
+  scale transform on a pseudo-element), 8s infinite
+
+---
+
+### 4. INTRO QUOTE SECTION
+
+- Full-width, dark bg (#0d0b09)
+- Centered, max-width: 800px
+- Large decorative quote mark: " 
+  font-size: 120px, Cormorant Garamond,
+  color: rgba(200,146,42,0.15),
+  position: absolute, top-left of text block
+- Quote text (italic, Cormorant Garamond, 32–40px):
+  "Jedzenie to nie tylko smak —
+   to wspomnienie, miejsce, człowiek."
+- Attribution below: "— Ciao, Grodzisk"
+  Raleway, 11px, uppercase, tracked, --color-accent
+- Thin horizontal rules (1px, --color-border) 
+  above and below the section
+
+---
+
+### 5. O NAS (ABOUT) SECTION
+
+- Two-column layout (desktop): 60% text / 40% visual
+- LEFT COLUMN:
+  - Section label: "NASZA HISTORIA"
+    Raleway, 10px, uppercase, tracked, --color-accent
+  - Headline (Playfair Display, 44px):
+    "Włoska kuchnia
+     z neapolitańskim sercem."
+  - Two paragraphs of atmospheric copy:
+    Para 1: "CIAO powstało z miłości do Neapolu —
+    do jego hałaśliwych ulic, zapachu świeżego ciasta
+    i espresso pitego na stojąco przy barze. Od 2018 roku
+    przenosimy ten klimat do Grodziska Mazowieckiego."
+    Para 2: "Nasze ciasto dojrzewa 48 godzin. Pomidory
+    przywozimy z San Marzano. Każdy talerz to efekt
+    szacunku do składnika i pasji do rzemiosła."
+  - Font: Raleway, 17px, line-height: 1.9,
+    color: --color-muted
+  - Below: three stat pills in a row:
+    "od 2018" · "48h ciasto" · "100% włoskie składniki"
+    Each: border 1px solid --color-border,
+    padding: 8px 20px, Raleway 10px uppercase tracked
+
+- RIGHT COLUMN:
+  - CSS art "window/arch" element:
+    Tall rectangle with arch top (border-radius on top),
+    width: 100%, aspect-ratio: 3/4,
+    background: linear-gradient(160deg, 
+      #2a1205 0%, #0d0b09 100%),
+    border: 1px solid rgba(200,146,42,0.2),
+    box-shadow: inset 0 0 60px rgba(200,146,42,0.05),
+    overflow: hidden
+  - Inside: decorative horizontal lines 
+    (repeating-linear-gradient, like shutters),
+    opacity: 0.15
+  - Centered inside: large italic text overlay
+    "Napoli" in Cormorant Garamond, 72px,
+    color: rgba(200,146,42,0.12), 
+    position: absolute, centered
+
+---
+
+### 6. WYRÓŻNIONE DANIA (FEATURED DISHES)
+
+- Dark warm bg (#141008)
+- Section label: "POLECAMY"
+- Headline: "Smaki, które wracają."
+- Three featured dish cards in a row (CSS Grid):
+
+  CARD STRUCTURE:
+  - No image — CSS gradient "plate" circle at top:
+    width: 80px, height: 80px, border-radius: 50%,
+    unique gradient per card (see below)
+  - Dish name (Playfair Display, 22px, --color-text)
+  - Short poetic description (2 lines, Raleway, 
+    14px, --color-muted)
+  - Price (Cormorant Garamond, 28px, --color-accent)
+  - Thin bottom border on hover: --color-accent
+
+  THREE CARDS:
+  1. "Pizza Margherita di Bufala" / 36 zł
+     "Mozzarella di bufala, pomidory San Marzano DOP,
+      świeża bazylia. Klasyk doskonały."
+     Plate gradient: radial-gradient(#8B2500, #2a0800)
+
+  2. "Tagliatelle z pistacjami" / 41 zł
+     "Pesto pistacjowe, burrata, oliwa cytrynowa.
+      Delikatność zamknięta w makaronie."
+     Plate gradient: radial-gradient(#4a5a20, #1a2008)
+
+  3. "Tiramisu" / 23 zł
+     "Mascarpone, kawa, amaretto, savoiardi.
+      Włoski finał każdej kolacji."
+     Plate gradient: radial-gradient(#3d2510, #0d0b09)
+
+  Card styling:
+  - background: rgba(255,255,255,0.02)
+  - border: 1px solid --color-border
+  - padding: 40px 32px
+  - hover: border-color rgba(200,146,42,0.3),
+    transform: translateY(-4px),
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4)
+  - transition: all 0.6s ease
+
+---
+
+### 7. MENU PAGE (osobna podstrona w SPA)
+
+This is the most important section.
+Implement as a **Single Page Application tab system**:
+- Main site = "home" view
+- Clicking "Menu" in navbar → smooth transition to 
+  menu view (opacity fade, 0.5s)
+- Back button in menu view → returns to home
+
+MENU PAGE DESIGN:
+- Same dark bg, same typography system
+- Top: large heading "MENU" (Cormorant Garamond, 
+  80px, thin weight, centered)
+- Below: "Jesień / Zima 2025" in Raleway, tracked, 
+  --color-accent
+- Thin horizontal rule
+
+CATEGORY TAB SYSTEM:
+Horizontal scrollable tabs (mobile-friendly):
+Na zimę · Napoje zimne · Kawa i herbata · 
+Piwo · Drinki · Ciao Kids · Przystawki · 
+Sałatki · Makarony · Desery · Pizza
+
+Tab styling:
+- Default: Raleway 10px, uppercase, tracked,
+  color: --color-muted, padding: 12px 20px,
+  border-bottom: 2px solid transparent
+- Active: color: --color-accent,
+  border-bottom: 2px solid --color-accent
+- Hover: color: --color-text
+- Smooth underline transition: 0.3s ease
+
+MENU ITEM LAYOUT (per category):
+Each item as a row:
+[DISH NAME] .............. [PRICE]
+[description in smaller muted text below]
+
+Styling:
+- Name: Playfair Display, 18px, --color-text
+- Dots: flex spacer with border-bottom dotted,
+  color: rgba(200,146,42,0.2)
+- Price: Cormorant Garamond, 22px, --color-accent
+- Description: Raleway, 13px, --color-muted, 
+  line-height: 1.6, margin-top: 4px
+- Row padding: 20px 0
+- Border-bottom: 1px solid rgba(210,175,120,0.06)
+- Hover: background rgba(200,146,42,0.02)
+- Badges: VEGE (green pill), HOT (red pill), 
+  nowość (amber pill) — small, 9px, uppercase
+
+FULL MENU CONTENT to include (from PDF):
+
+=== NA ZIMĘ ===
+Herbata zimowa / 21 zł
+  Domowy syrop korzenny, cytryna, pomarańcza, goździki, imbir, cynamon
+  + Dodaj rum/wiśniówkę +10 zł
+
+Lemoniada na gorąco / 19 zł
+  Brzoskwinia, wiśnie, cytryna, pomarańcza, imbir, cynamon, goździki
+
+Wino grzane / 21 zł
+  Czerwone wino, pijane wiśnie, domowy syrop korzenny, pomarańcza, goździki
+
+Peach Cobler NA CIEPŁO / 33 zł
+  Aperol, wódka waniliowa, brzoskwinia, cytryna
+
+Cinnamon Toddy NA CIEPŁO / 33 zł
+  Fireball, miód rozmarynowy, cytryna, cynamon, czarna herbata, 
+  pomarańcza, goździki, rozmaryn
+
+=== NAPOJE ZIMNE ===
+Coca Cola Zero / Coca Cola / Fanta / Sprite / Kinley 0,25l / 9 zł
+Kropla Beskidu / Kropla Delice 0,33l / 8 zł
+Cappy jabłkowy / pomarańczowy 0,25l / 9 zł
+Lemoniada cytrynowa 0,45l / 16 zł
+Lemoniada mango-marakuja 0,45l / 19 zł
+Sok świeżo wyciskany 0,33l / 16 zł
+  pomarańczowy / grejpfrutowy / mieszany
+Napój San Pellegrino Aranciata / Aranciata Rosa / 13 zł
+Woda San Pellegrino 0,25l / 0,75l — 9/19 zł
+
+=== KAWA I HERBATA ===
+Pumpkin Spice Latte nowość / 21 zł
+  Przyprawy korzenne, syrop dyniowy, bita śmietana, wiórki karmelowe
+Herbata Sirocco / 14 zł
+  czarna / Earl Grey / czarna owocowa / zielona / zielona jaśminowa /
+  zielona z prażonym ryżem / zielona owocowa / biała z brzoskwinią / mięta
+Espresso / Espresso Doppio — 7/9 zł
+Americano — 8/10 zł
+Americano z mlekiem — 9/11 zł
+Cappuccino — 10/12 zł
+Latte / 14 zł
+Flat White / 12 zł
+Espresso Tonic / 15 zł
+Ice Latte / 15 zł
+Mleko roślinne / Syrop do kawy +3 zł
+
+=== PIWO ===
+Peroni Nastro Azzurro z beczki 0,25l / 0,4l — 11/15 zł
+Książęce IPA / Złote Pszeniczne / Czerwony Lager 0,5l / 15 zł
+Piknikowe Pils / Pszeniczne 0,5l / 17 zł
+Peroni Nastro Azzurro 0% 0,33l / 11 zł
+Książęce IPA / Złote Pszeniczne 0% 0,5l / 15 zł
+Piknikowe bezalkoholowe 0,05% 0,5l / 17 zł
+Złote Pszeniczne 0% 0,5l / 15 zł
+Bawaria bezalkoholowa klasyczna / pszeniczna imbir-limonka 0,33l / 12 zł
+
+=== DRINKI ===
+Ciaocello 4x / 0,5l — 29/70 zł
+  Nasza autorska interpretacja słynnego Limoncello — wódka, cytryna, mięta
+Passion CIAO 2.0 / 33 zł
+  Passoa, Gin Gibsons London Dry, kwiat bzu, cytryna, białko, kwiaty jadalne
+Aperol Spritz (dostępna wersja 0%) / 31 zł
+  Aperol, Cava Vilarnau brut, pomarańcza, soda
+Hugo Spritz (dostępna wersja 0%) / 31 zł
+  Kwiat bzu, Cava Vilarnau brut, limonka, mięta, soda
+Cherry Lady nowość (dostępna wersja 0%) / 31 zł
+  Tequila Jose Cuervo Silver, czereśnia, cytryna, Cava Vilarnau brut
+Lollypop nowość / 30 zł
+  Rum Negrita Blanco, falernum, imbir, cytryna, białko, lizak
+Pornstar Martini / 32 zł
+  Wódka Nemiroff Original, wanilia, marakuja, cytryna, prosecco
+White Lady / 30 zł
+  Wódka Nemiroff Original, wanilia, Cava Vilarnau brut, gruszka, cytryna
+Spicycolada nowość / 30 zł
+  Rum Negrita Anejo, Malibu, mango, chilli, cytryna
+Sangria Bellini (dostępna wersja 0%) / 26 zł
+  Brzoskwinia, cytryna, Cava Vilarnau brut, owoce
+Wiśniowe Whisky Sour nowość / 30 zł
+  Whisky Bushmills Original, pijane wiśnie, cytryna, białko
+Negroni Sbagliato / 28 zł
+  Bottega Bitter, Martini Rubino, Cava Vilarnau brut
+Martini Fiero & Tonic Kinley / 26 zł
+  Martini Fiero, Kinley, pomarańcza
+Martini Vibrante / Floreale & Tonic Kinley 0% / 25 zł
+  Martini Vibrante/Floreale, Kinley, owoce
+
+=== CIAO KIDS ===
+Kakao popcornowe / 16 zł
+Gnocchi ziemniaczane / 19 zł — masło, parmezan [VEGE]
+Spaghetti al pomodoro / 21 zł — pomidory San Marzano, parmezan [VEGE]
+  + Dodaj klopsiki 3 szt. +9 zł
+Margherita classica / 23 zł — pomidory San Marzano DOP, mozzarella FDL [VEGE]
+
+=== PRZYSTAWKI ===
+Focaccia / 21 zł — oliwa, rozmaryn, sól [VEGE]
+Bruschetta nowość / 32 zł
+  Salsa mango, krewetka / ricotta, figa, miód / ricotta ziołowa, 
+  konfitowane pomidorki, prosciutto crudo
+Krewetki w oliwie 6 szt. / 34 zł
+  Oliwa extra virgin, czosnek, pieprz, focaccia
+Ricotta z gruszką nowość / 35 zł
+  Karmelizowana gruszka, ricotta ziołowa, polędwiczka wieprzowa Lanzino,
+  orzechy włoskie, oliwa szczypiorkowa, pane carasau
+Burrata z kurkami nowość / 36 zł
+  Burrata, kurki, kalafior romanesco, emulsja winno-maślana, 
+  natka pietruszki, focaccia [VEGE]
+Raviolo z grzybami nowość / 36 zł
+  Podgrzybek, pieczarka portobello, mascarpone, mus z pieczonej dyni,
+  pikle z szalotki [VEGE]
+Grzanka z bresaolą nowość / 37 zł
+  Mus z gorgonzoli, blanszowany jarmuż, bresaola, pikle z szalotki
+Krewetki z ndują 6 szt. nowość / 38 zł
+  Nduja, pomidorki cherry, wino białe, mascarpone, natka pietruszki,
+  zest z cytryny, focaccia
+Carpaccio z bresaoli / 38 zł
+  Szalotka, puder z grzybów, majonez truflowy, majonez z anchois,
+  orzeszki pinii, oliwa ziołowa, focaccia
+Antipasti / 59 zł
+  Włoskie sery i wędliny, kolorowe oliwki, suszone pomidory, focaccia
+
+=== SAŁATKI ===
+Sałatka zimowa nowość / 39 zł
+  Mix sałat, flambirowana gruszka, figa, karmelizowane orzechy włoskie,
+  pomidorki cherry, scamorza affumicata, domowy winegret [VEGE]
+Sałatka z gorgonzolą nowość / 39 zł
+  Rukola, szpinak, figa, karmelizowana pomarańcza, gorgonzola,
+  chipsy z prosciutto crudo, winegret z octem balsamicznym
+
+=== MAKARONY ===
+Fusilloni z owocami morza nowość / 46 zł
+  Krewetki, vongole, mięso małż, pomidorki cherry, natka pietruszki, oliwa
+Rotondi z łopatką wieprzową nowość / 44 zł
+  Wolno gotowana łopatka wieprzowa, ricotta, szczypiorek,
+  emulsja z domowego masła grzybowego
+Spaghetti z klopsikami nowość / 42 zł
+  Klopsiki, wolno gotowany sos pomidorowy, parmezan, bazylia
+Spaghetti z krewetkami / 41 zł
+  Krewetki, spianata piccante, karmelizowane pomidorki, białe wino,
+  masło, czosnek, natka pietruszki
+Tagliatelle z pistacjami / 41 zł
+  Pesto z pistacji, burrata, oliwa cytrynowa, bazylia, parmezan [VEGE]
+Spaghetti w pesto bazyliowym / 40 zł
+  Pesto bazyliowe, burrata, speck, karmelizowane pomidorki, parmezan
+Gnocchi z gorgonzolą nowość / 39 zł
+  Gorgonzola, jarmuż, śmietanka, orzechy włoskie, natka pietruszki [VEGE]
+
+=== DESERY ===
+Semifreddo / 27 zł — zapytaj jaki smak przygotowaliśmy na dziś
+Beza / 25 zł — zapytaj jaki smak przygotowaliśmy na dziś
+Cannolo / 23 zł — ricotta, pistacje, skórka pomarańczy
+Tiramisu / 23 zł — mascarpone, kawa, amaretto, savoiardi
+
+=== PIZZA ===
+Marinara / 26 zł
+  Pomidory San Marzano DOP, czosnek, bazylia, oliwa [VEGE]
+Margherita classica / 31 zł
+  Pomidory San Marzano DOP, mozzarella FDL, bazylia [VEGE]
+Margherita di Bufala / 36 zł
+  Pomidory San Marzano DOP, mozzarella di bufala, bazylia [VEGE]
+Salame / 37 zł
+  Pomidory San Marzano DOP, mozzarella FDL, salami napoli, bazylia, parmezan
+Prosciutto e Funghi / 38 zł
+  Pomidory San Marzano DOP, mozzarella FDL, prosciutto cotto, smażone boczniaki
+Hawaii / 38 zł
+  Pomidory San Marzano DOP, mozzarella FDL, prosciutto cotto, ananas
+Piccante / 39 zł
+  Pomidory San Marzano DOP, mozzarella FDL, spianata piccante,
+  karmelizowane pomidorki, miód rozmarynowy
+Diavola / 40 zł
+  Creme fraiche, mozzarella FDL, spianata piccante, nduja, ostra papryczka [HOT]
+Pesto di Jalapeno 2.0 / 40 zł
+  Pesto jalapeno, creme fraiche, mozzarella FDL, salsiccia piccante,
+  karmelizowana czerwona cebula [HOT]
+Pera / 40 zł
+  Creme fraiche, mozzarella FDL, gruszka, gorgonzola, 
+  karmelizowane orzechy włoskie nowość [VEGE]
+Salame Giallo / 41 zł
+  Krem z żółtych pomidorów, mozzarella FDL, salami piccante ventricina,
+  mascarpone nduja, bazylia [HOT]
+Reggina / 41 zł
+  Pomidory San Marzano DOP, mozzarella FDL, prosciutto crudo, rukola,
+  karmelizowane pomidorki, parmezan
+Formaggi / 41 zł
+  Creme fraiche, mozzarella FDL, taleggio, gorgonzola, parmezan [VEGE]
+Barbabietola / 41 zł
+  Pesto ze szpinaku, burak, kozi ser, figa, płatki migdałów, 
+  miód z chilli nowość [VEGE]
+Campagnola / 42 zł
+  Creme fraiche, mozzarella FDL, guanciale, talarki ziemniaka,
+  czerwona cebula, pecorino Romano nowość
+Nduja / 42 zł
+  Pomidory San Marzano, nduja, kolorowe pomidorki, straciatella, bazylia [HOT]
+Mortadela / 43 zł
+  Pomidory San Marzano, mozzarella FDL, mortadela bologna,
+  pesto pistacjowe, bazylia, parmezan
+Piccante con Ricotta / 44 zł
+  Pomidory San Marzano DOP, mozzarella FDL, salsiccia piccante, nduja,
+  papryczki jalapeno, karmelizowana czerwona cebula, ricotta ziołowo-miodowa [HOT]
+Tartuffo Delicato / 44 zł
+  Creme fraiche, pasta truflowa, mozzarella FDL, coppa picante,
+  rukola, mascarpone nowość
+Salmone Affumicato / 45 zł
+  Creme fraiche, mozzarella FDL, talarki ziemniaka, łosoś wędzony,
+  cebula czerwona, mascarpone, koperek
+Spinachi / 45 zł
+  Creme fraiche, mozzarella FDL, szpinak, suszone pomidorki cherry,
+  pesto bazyliowe, burrata, prażone płatki migdałów nowość [VEGE]
+Tartuffo / 46 zł
+  Creme fraiche, pasta truflowa, mozzarella FDL, prosciutto cotto,
+  pomidorki cherry, straciatella, chilli nowość [HOT]
+Basilico e Bresaola / 49 zł
+  Pesto bazyliowe, mozzarella FDL, bresaola, konfitowane pomidorki cherry,
+  ricotta truflowa, rukola
+Gamberi e Chorizo / 49 zł
+  Creme fraiche, mozzarella FDL, marynowane krewetki, chorizo,
+  cytrynowe mascarpone, natka pietruszki
+
+Sos: bazyliowy / truflowy / aioli +4 zł
+Dodaj burratę do swojej pizzy +12 zł
+
+---
+
+### 8. REZERWACJA SECTION
+
+- Dark section, centered layout
+- Decorative large italic text background:
+  "Prenota" (Italian for "Reserve") — 
+  Cormorant Garamond, 200px, opacity: 0.03,
+  position: absolute, centered
+- Headline: "Zarezerwuj stolik"
+- Subtext: "Zadzwoń lub napisz — chętnie znajdziemy
+  dla Ciebie idealne miejsce."
+- Simple reservation form:
+  - Name input: "Imię i nazwisko"
+  - Date input: "Data wizyty"  
+  - Time input: "Godzina"
+  - Guests select: "Liczba osób" (1–10+)
+  - Textarea: "Uwagi / specjalne życzenia"
+  - Submit button: "Wyślij rezerwację"
+  
+  Form styling:
+  - Inputs: background: transparent,
+    border: none, border-bottom: 1px solid --color-border,
+    color: --color-text, font: Raleway 15px,
+    padding: 14px 0, width: 100%
+  - Focus: border-bottom-color: --color-accent,
+    outline: none
+  - Submit: same as hero primary button
+  - Two-column grid for inputs (desktop)
+  - On submit: show success message 
+    "Dziękujemy! Odezwiemy się wkrótce." 
+    (JS, no actual backend)
+
+---
+
+### 9. KONTAKT SECTION
+
+- Three columns:
+  1. ADRES:
+     "ul. Cegielniana 2, Grodzisk Mazowiecki"
+     "Otwarte: wt–nd, 12:00–22:00"
+  2. KONTAKT:
+     "rezerwacje@ciao-grodzisk.pl"
+     "+48 XXX XXX XXX"
+  3. SOCIAL:
+     Instagram · Facebook · Google Maps
+     (użyj prostych SVG ikon lub Unicode symboli)
+
+  Column label styling:
+  - Raleway, 10px, uppercase, letter-spacing: 0.3em,
+    color: --color-accent, margin-bottom: 16px
+  - Content: Raleway, 15px, --color-muted, 
+    line-height: 2.0
+  - Links: color: --color-text, hover: --color-accent,
+    transition: 0.3s
+
+- Below columns: embedded CSS "map placeholder":
+  width: 100%, height: 200px,
+  background: linear-gradient(135deg, #1a1208, #0d0b09),
+  border: 1px solid --color-border,
+  display: flex, align-items: center, 
+  justify-content: center,
+  text: "📍 Grodzisk Mazowiecki" in --color-muted
+
+---
+
+### 10. FOOTER
+
+- Background: #080604 (even darker than bg)
+- Top border: 1px solid rgba(200,146,42,0.08)
+- Centered layout, three rows:
+
+  ROW 1 — Logo:
+  Inline SVG logo, height: 56px,
+  margin-bottom: 32px
+
+  ROW 2 — Nav links:
+  O nas · Menu · Rezerwacja · Kontakt
+  Raleway, 11px, uppercase, tracked,
+  color: --color-muted, hover: --color-accent,
+  gap: 40px
+
+  ROW 3 — Social icons row:
+  Instagram · Facebook · TripAdvisor · Google
+  Simple circle icon buttons:
+  width/height: 40px, border-radius: 50%,
+  border: 1px solid --color-border,
+  hover: border-color --color-accent,
+  color: --color-muted, hover: --color-accent
+
+  ROW 4 — Bottom bar:
+  "© 2025 CIAO Grodzisk. Wszelkie prawa zastrzeżone."
+  Raleway, 11px, --color-muted,
+  padding-top: 32px,
+  border-top: 1px solid rgba(210,175,120,0.05)
+
+  Small note below:
+  "Hasło do WiFi: Ciao2022 · 
+   Serwis 10% od 6 osób · 
+   Fakturę zgłoś przed płatnością"
+  Raleway, 10px, opacity: 0.4
+
+---
+
+## ⚙️ JAVASCRIPT INTERACTIONS
+
+### 1. SPA Navigation (Home ↔ Menu)
+```js
+// Two views: #view-home and #view-menu
+// Clicking "Menu" nav link:
+// - fade out #view-home (opacity 0, 0.4s)
+// - display: none after transition
+// - display: block + fade in #view-menu
+// Store active view in a JS variable: let currentView = 'home'
+// "← Wróć" button in menu view does the reverse
+// Update document.title accordingly:
+// "CIAO Grodzisk" vs "Menu — CIAO Grodzisk"
