@@ -14,8 +14,9 @@
   --color-accent:    #d42b2b;   /* czerwień z logo CIAO */
   --color-accent2:   #e8401a;   /* pomarańczowo-czerwona (pomidor) */
   --color-highlight: #f5c842;   /* żółty akcent (cytryna) */
-  --color-green:     #3a7a2a;   /* zieleń (bazylia) */
+  --color-green:     rgb(58, 122, 42);   /* zieleń (bazylia) */
   --color-cream:     #f5e8c8;   /* kremowy fill kart */
+  --color-selection: rgba(58, 122, 42, 0.5);
 
 }
 
@@ -87,6 +88,12 @@ input, textarea, select { font-family: inherit; }
 }
 
 .nav-logo svg { height: 36px; width: auto; display: block; }
+
+.nav-logo img {
+  height: 45px;
+  width: auto;
+  display: block;
+}
 
 .nav-links {
   display: flex;
@@ -190,7 +197,7 @@ input, textarea, select { font-family: inherit; }
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-image: url(hero-bg.jpg);
+  background-image: url(media/img/hero-bg.jpg);
   background-size: cover;
   /* background: var(--color-bg-cream); */
   border-bottom: 3px solid var(--color-border);
@@ -330,6 +337,7 @@ input, textarea, select { font-family: inherit; }
   align-items: center;
   gap: 8px;
 }
+
 .scroll-indicator span { font-size: 18px; }
 
 @keyframes bounceY {
@@ -469,7 +477,7 @@ input, textarea, select { font-family: inherit; }
   position: relative;
   width: 100%;
   aspect-ratio: 3/4;
-  background-image: url(napoli.jpg);
+  background-image: url(media/img/napoli.jpg);
   background-size: cover;
   border: 3px solid var(--color-border);
   border-radius: 0;
@@ -512,6 +520,7 @@ input, textarea, select { font-family: inherit; }
 /* ============================================================
    FEATURED DISHES
    ============================================================ */
+
 .featured-section {
   background: var(--color-bg-cream);
   padding: 120px 48px;
@@ -599,7 +608,6 @@ input, textarea, select { font-family: inherit; }
 .menu-view {
   min-height: 100vh;
   background: var(--color-bg);
-  padding-top: 100px;
 }
 
 .menu-back {
@@ -628,7 +636,8 @@ input, textarea, select { font-family: inherit; }
   padding: 60px 24px 48px;
   border-bottom: 3px solid var(--color-border);
   position: relative;
-  background: var(--color-bg-cream);
+  background-image: url(media/img/menu-bg2.png);
+  background-size: cover;
   overflow: hidden;
 }
 
@@ -904,7 +913,7 @@ input, textarea, select { font-family: inherit; }
   outline: none;
   transition: border-color 0.3s ease;
   border-radius: 0;
-  -webkit-appearance: none;
+
 }
 .form-field input:focus,
 .form-field select:focus,
@@ -1013,6 +1022,12 @@ footer {
 
 .footer-logo { margin-bottom: 40px; }
 .footer-logo svg { height: 56px; width: auto; }
+
+.footer-logo img {
+  height: 70px;
+  width: auto;
+  display: block;
+}
 
 .footer-nav {
   display: flex;
@@ -1140,6 +1155,25 @@ footer {
    SELECTION
    ============================================================ */
 ::selection {
-  background: var(--color-highlight);
+  background: var(--color-selection);
   color: var(--color-text);
+}
+
+/* Dodatki do pizzy — mniejszy, stonowany wiersz */
+.menu-item--extras .menu-item-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.menu-item--extras .menu-item-price {
+    font-size: 18px;
+    color: var(--color-muted);
+}
+
+.pizza {
+  float: right;
 }

@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Menu — CIAO Grodzisk</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="media/img/favicon.ico">
+        <style>
+            /* ── Nadpisania tylko dla podstrony menu.html ── */
+
+            /* Ukryj przycisk "Wróć" — nie ma sensu na osobnej podstronie */
+            .menu-back { display: none; }
+
+            /* Tabs — obsługa bez JS przez :target */
+            .menu-category        { display: none; }
+            .menu-category:target { display: block; }
+
+            /* Domyślna kategoria gdy żaden :target nie jest aktywny */
+            .menu-category#cat-na-zime:not(:target) {
+                display: block;
+            }
+            /* Ukryj domyślną gdy cokolwiek innego jest :target */
+            .menu-tabs:has(~ .menu-content .menu-category:target) ~ .menu-content .menu-category#cat-na-zime:not(:target) {
+                display: none;
+            }
+
+            /* Aktywny tab — podświetlenie przez :target */
+            .menu-tab             { border-bottom: 3px solid transparent; }
+            .menu-tab.tab-active  { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+
+            /* Padding-top żeby navbar nie zasłaniał treści */
+            .menu-page-wrap {
+                padding-top: 80px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- ============================================================
+            NAVIGATION
+            ============================================================ -->
+        <nav class="navbar" id="navbar">
+            <a href="index.html" class="nav-logo" aria-label="CIAO Grodzisk">
+                <img src="media/img/logo-nav.png" alt="CIAO Grodzisk">
+            </a>    
+
+            <ul class="nav-links">
+                <li><a href="index.html#o-nas">O nas</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="index.html#rezerwacja">Rezerwacja</a></li>
+                <li><a href="index.html#kontakt">Kontakt</a></li>
+            </ul>
+
+            <a href="index.html#rezerwacja" class="nav-cta">Zarezerwuj stolik</a>
+
+            <button class="nav-hamburger" id="hamburger" aria-label="Otwórz menu"
+                onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+
+        <!-- Mobile menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <button class="mobile-menu-close" aria-label="Zamknij menu"
+                onclick="document.getElementById('mobileMenu').classList.remove('open')">✕</button>
+            <a href="index.html#o-nas"   onclick="document.getElementById('mobileMenu').classList.remove('open')">O nas</a>
+            <a href="menu.html"          onclick="document.getElementById('mobileMenu').classList.remove('open')">Menu</a>
+            <a href="index.html#rezerwacja" onclick="document.getElementById('mobileMenu').classList.remove('open')">Rezerwacja</a>
+            <a href="index.html#kontakt" onclick="document.getElementById('mobileMenu').classList.remove('open')">Kontakt</a>
+        </div>
+
+        <!-- ============================================================
+            MENU PAGE
+            ============================================================ -->
+        <div class="menu-page-wrap">
+
+            <div class="menu-view noise-overlay">
+
+                <!-- Menu header -->
+                <div class="menu-header">
+                    <h1 class="menu-title">Menu</h1>
+                </div>
+
+                <!-- Category tabs — nawigacja przez href="#id" -->
+                <div class="menu-tabs" id="menuTabs">
+                    <a href="#cat-na-zime"      class="menu-tab">Na zimę</a>
+                    <a href="#cat-napoje-zimne" class="menu-tab">Napoje zimne</a>
+                    <a href="#cat-kawa"         class="menu-tab">Kawa i herbata</a>
+                    <a href="#cat-piwo"         class="menu-tab">Piwo</a>
+                    <a href="#cat-drinki"       class="menu-tab">Drinki</a>
+                    <a href="#cat-kids"         class="menu-tab">Ciao Kids</a>
+                    <a href="#cat-przystawki"   class="menu-tab">Przystawki</a>
+                    <a href="#cat-salatki"      class="menu-tab">Sałatki</a>
+                    <a href="#cat-makarony"     class="menu-tab">Makarony</a>
+                    <a href="#cat-desery"       class="menu-tab">Desery</a>
+                    <a href="#cat-pizza"        class="menu-tab">Pizza</a>
+                </div>
+
+                <!-- Menu content -->
+                <div class="menu-content">
+
+                    <!-- ================================================
+                        NA ZIMĘ
+                        ================================================ -->
+                    <div class="menu-category" id="cat-na-zime">
+                        <h2 class="menu-category-title">Na zimę</h2>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Herbata zimowa</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">21 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Domowy syrop korzenny, cytryna, pomarańcza, goździki, imbir, cynamon<br>
+                                <em style="color:var(--color-accent);font-size:12px;">+ Dodaj rum / wiśniówkę +10 zł</em>
+                            </p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Lemoniada na gorąco</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">19 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Brzoskwinia, wiśnie, cytryna, pomarańcza, imbir, cynamon, goździki</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Wino grzane</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">21 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Czerwone wino, pijane wiśnie, domowy syrop korzenny, pomarańcza, goździki</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Peach Cobler
+                                    <span class="menu-item-badges">
+                                        <span class="badge" style="background:rgba(200,100,42,0.15);color:#e8a060;border:1px solid rgba(200,100,42,0.3);font-size:8px;padding:2px 6px;">NA CIEPŁO</span>
+                                    </span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">33 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Aperol, wódka waniliowa, brzoskwinia, cytryna</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Cinnamon Toddy
+                                    <span class="menu-item-badges">
+                                        <span class="badge" style="background:rgba(200,100,42,0.15);color:#e8a060;border:1px solid rgba(200,100,42,0.3);font-size:8px;padding:2px 6px;">NA CIEPŁO</span>
+                                    </span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">33 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Fireball, miód rozmarynowy, cytryna, cynamon, czarna herbata, pomarańcza, goździki, rozmaryn</p>
+                        </div>
+                    </div>
+
+                    <!-- ================================================
+                        NAPOJE ZIMNE
+                        ================================================ -->
+                    <div class="menu-category" id="cat-napoje-zimne">
+                        <h2 class="menu-category-title">Napoje zimne</h2>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Coca Cola Zero / Cola / Fanta / Sprite / Kinley 0,25l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">9 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Kropla Beskidu / Kropla Delice 0,33l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">8 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Cappy jabłkowy / pomarańczowy 0,25l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">9 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Lemoniada cytrynowa 0,45l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">16 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Lemoniada mango-marakuja 0,45l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">19 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Sok świeżo wyciskany 0,33l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">16 zł</span>
+                            </div>
+                            <p class="menu-item-desc">pomarańczowy / grejpfrutowy / mieszany</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">San Pellegrino Aranciata / Aranciata Rosa</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">13 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Woda San Pellegrino 0,25l / 0,75l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">9 / 19 zł</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================================================
+                        KAWA I HERBATA
+                        ================================================ -->
+                    <div class="menu-category" id="cat-kawa">
+                        <h2 class="menu-category-title">Kawa i herbata</h2>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Pumpkin Spice Latte
+                                    <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">21 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Przyprawy korzenne, syrop dyniowy, bita śmietana, wiórki karmelowe</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Herbata Sirocco</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">14 zł</span>
+                            </div>
+                            <p class="menu-item-desc">czarna · Earl Grey · czarna owocowa · zielona · zielona jaśminowa · zielona z prażonym ryżem · zielona owocowa · biała z brzoskwinią · mięta</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Espresso / Espresso Doppio</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">7 / 9 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Americano</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">8 / 10 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Americano z mlekiem</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">9 / 11 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Cappuccino</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">10 / 12 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Latte</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">14 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Flat White</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">12 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Espresso Tonic</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">15 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Ice Latte</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">15 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Mleko roślinne / Syrop do kawy</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">+3 zł</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================================================
+                        PIWO
+                        ================================================ -->
+                    <div class="menu-category" id="cat-piwo">
+                        <h2 class="menu-category-title">Piwo</h2>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Peroni Nastro Azzurro z beczki 0,25l / 0,4l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">11 / 15 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Książęce IPA / Złote Pszeniczne / Czerwony Lager 0,5l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">15 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Piknikowe Pils / Pszeniczne 0,5l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">17 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Peroni Nastro Azzurro 0% 0,33l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">11 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Książęce IPA / Złote Pszeniczne 0% 0,5l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">15 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Piknikowe bezalkoholowe 0,05% 0,5l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">17 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Złote Pszeniczne 0% 0,5l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">15 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Bawaria bezalkoholowa klasyczna / pszeniczna imbir-limonka 0,33l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">12 zł</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================================================
+                        DRINKI
+                        ================================================ -->
+                    <div class="menu-category" id="cat-drinki">
+                        <h2 class="menu-category-title">Drinki</h2>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Ciaocello 4x / 0,5l</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">29 / 70 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Nasza autorska interpretacja słynnego Limoncello — wódka, cytryna, mięta</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Passion CIAO 2.0</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">33 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Passoa, Gin Gibsons London Dry, kwiat bzu, cytryna, białko, kwiaty jadalne</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Aperol Spritz <em style="font-size:11px;color:var(--color-muted)">(dostępna wersja 0%)</em></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">31 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Aperol, Cava Vilarnau brut, pomarańcza, soda</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Hugo Spritz <em style="font-size:11px;color:var(--color-muted)">(dostępna wersja 0%)</em></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">31 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Kwiat bzu, Cava Vilarnau brut, limonka, mięta, soda</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Cherry Lady <em style="font-size:11px;color:var(--color-muted)">(dostępna wersja 0%)</em>
+                                    <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">31 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Tequila Jose Cuervo Silver, czereśnia, cytryna, Cava Vilarnau brut</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Lollypop
+                                    <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">30 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Rum Negrita Blanco, falernum, imbir, cytryna, białko, lizak</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Pornstar Martini</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">32 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Wódka Nemiroff Original, wanilia, marakuja, cytryna, prosecco</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">White Lady</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">30 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Wódka Nemiroff Original, wanilia, Cava Vilarnau brut, gruszka, cytryna</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Spicycolada
+                                    <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">30 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Rum Negrita Anejo, Malibu, mango, chilli, cytryna</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Sangria Bellini <em style="font-size:11px;color:var(--color-muted)">(dostępna wersja 0%)</em></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">26 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Brzoskwinia, cytryna, Cava Vilarnau brut, owoce</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Wiśniowe Whisky Sour
+                                    <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">30 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Whisky Bushmills Original, pijane wiśnie, cytryna, białko</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Negroni Sbagliato</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">28 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Bottega Bitter, Martini Rubino, Cava Vilarnau brut</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Martini Fiero &amp; Tonic Kinley</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">26 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Martini Fiero, Kinley, pomarańcza</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Martini Vibrante / Floreale &amp; Tonic 0%</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">25 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Martini Vibrante / Floreale, Kinley, owoce</p>
+                        </div>
+                    </div>
+
+                    <!-- ================================================
+                        CIAO KIDS
+                        ================================================ -->
+                    <div class="menu-category" id="cat-kids">
+                        <h2 class="menu-category-title">Ciao Kids</h2>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Kakao popcornowe</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">16 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Gnocchi ziemniaczane
+                                    <span class="menu-item-badges"><span class="badge badge-vege">vege</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">19 zł</span>
+                            </div>
+                            <p class="menu-item-desc">masło, parmezan</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Spaghetti al pomodoro
+                                    <span class="menu-item-badges"><span class="badge badge-vege">vege</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">21 zł</span>
+                            </div>
+                            <p class="menu-item-desc">pomidory San Marzano, parmezan<br>
+                                <em style="color:var(--color-accent);font-size:12px;">+ Dodaj klopsiki 3 szt. +9 zł</em>
+                            </p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Margherita classica
+                                    <span class="menu-item-badges"><span class="badge badge-vege">vege</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">23 zł</span>
+                            </div>
+                            <p class="menu-item-desc">pomidory San Marzano DOP, mozzarella FDL</p>
+                        </div>
+                    </div>
+
+                    <!-- ================================================
+                        PRZYSTAWKI
+                        ================================================ -->
+                    <div class="menu-category" id="cat-przystawki">
+                        <h2 class="menu-category-title">Przystawki</h2>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Focaccia
+                                    <span class="menu-item-badges"><span class="badge badge-vege">vege</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">21 zł</span>
+                            </div>
+                            <p class="menu-item-desc">oliwa, rozmaryn, sól</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Bruschetta
+                                    <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">32 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Salsa mango, krewetka / ricotta, figa, miód / ricotta ziołowa, konfitowane pomidorki, prosciutto crudo</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Krewetki w oliwie 6 szt.</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">34 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Oliwa extra virgin, czosnek, pieprz, focaccia</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Ricotta z gruszką
+                                    <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">35 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Karmelizowana gruszka, ricotta ziołowa, polędwiczka wieprzowa Lanzino, orzechy włoskie, oliwa szczypiorkowa, pane carasau</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Burrata z kurkami
+                                    <span class="menu-item-badges">
+                                        <span class="badge badge-new">nowość</span>
+                                        <span class="badge badge-vege">vege</span>
+                                    </span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">36 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Burrata, kurki, kalafior romanesco, emulsja winno-maślana, natka pietruszki, focaccia</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Raviolo z grzybami
+                                    <span class="menu-item-badges">
+                                        <span class="badge badge-new">nowość</span>
+                                        <span class="badge badge-vege">vege</span>
+                                    </span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">36 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Podgrzybek, pieczarka portobello, mascarpone, mus z pieczonej dyni, pikle z szalotki</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Grzanka z bresaolą
+                                    <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">37 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Mus z gorgonzoli, blanszowany jarmuż, bresaola, pikle z szalotki</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Krewetki z ndują 6 szt.
+                                    <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">38 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Nduja, pomidorki cherry, wino białe, mascarpone, natka pietruszki, zest z cytryny, focaccia</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Carpaccio z bresaoli</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">38 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Szalotka, puder z grzybów, majonez truflowy, majonez z anchois, orzeszki pinii, oliwa ziołowa, focaccia</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Antipasti</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">59 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Włoskie sery i wędliny, kolorowe oliwki, suszone pomidory, focaccia</p>
+                        </div>
+                    </div>
+
+                    <!-- ================================================
+                        SAŁATKI
+                        ================================================ -->
+                    <div class="menu-category" id="cat-salatki">
+                        <h2 class="menu-category-title">Sałatki</h2>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Sałatka zimowa
+                                    <span class="menu-item-badges">
+                                        <span class="badge badge-new">nowość</span>
+                                        <span class="badge badge-vege">vege</span>
+                                    </span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">39 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Mix sałat, flambirowana gruszka, figa, karmelizowane orzechy włoskie, pomidorki cherry, scamorza affumicata, domowy winegret</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Sałatka z gorgonzolą
+                                    <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">39 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Rukola, szpinak, figa, karmelizowana pomarańcza, gorgonzola, chipsy z prosciutto crudo, winegret z octem balsamicznym</p>
+                        </div>
+                    </div>
+
+                    <!-- ================================================
+                        MAKARONY
+                        ================================================ -->
+                    <div class="menu-category" id="cat-makarony">
+                        <h2 class="menu-category-title">Makarony</h2>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Fusilloni z owocami morza
+                                    <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">46 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Krewetki, vongole, mięso małż, pomidorki cherry, natka pietruszki, oliwa</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Rotondi z łopatką wieprzową
+                                    <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">44 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Wolno gotowana łopatka wieprzowa, ricotta, szczypiorek, emulsja z domowego masła grzybowego</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Spaghetti z klopsikami
+                                    <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">42 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Klopsiki, wolno gotowany sos pomidorowy, parmezan, bazylia</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Spaghetti z krewetkami</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">41 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Krewetki, spianata piccante, karmelizowane pomidorki, białe wino, masło, czosnek, natka pietruszki</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Tagliatelle z pistacjami
+                                    <span class="menu-item-badges"><span class="badge badge-vege">vege</span></span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">41 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pesto z pistacji, burrata, oliwa cytrynowa, bazylia, parmezan</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Spaghetti w pesto bazyliowym</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">40 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pesto bazyliowe, burrata, speck, karmelizowane pomidorki, parmezan</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">
+                                    Gnocchi z gorgonzolą
+                                    <span class="menu-item-badges">
+                                        <span class="badge badge-new">nowość</span>
+                                        <span class="badge badge-vege">vege</span>
+                                    </span>
+                                </span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">39 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Gorgonzola, jarmuż, śmietanka, orzechy włoskie, natka pietruszki</p>
+                        </div>
+                    </div>
+
+                    <!-- ================================================
+                        DESERY
+                        ================================================ -->
+                    <div class="menu-category" id="cat-desery">
+                        <h2 class="menu-category-title">Desery</h2>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Semifreddo</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">27 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Zapytaj jaki smak przygotowaliśmy na dziś</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Beza</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">25 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Zapytaj jaki smak przygotowaliśmy na dziś</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Cannolo</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">23 zł</span>
+                            </div>
+                            <p class="menu-item-desc">ricotta, pistacje, skórka pomarańczy</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Tiramisu</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">23 zł</span>
+                            </div>
+                            <p class="menu-item-desc">mascarpone, kawa, amaretto, savoiardi</p>
+                        </div>
+                    </div>
+
+                    <!-- ================================================
+                        PIZZA
+                        ================================================ -->
+                    <div class="menu-category" id="cat-pizza">
+                        <h2 class="menu-category-title">Pizza</h2>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Marinara <span class="menu-item-badges"><span class="badge badge-vege">vege</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">26 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pomidory San Marzano DOP, czosnek, bazylia, oliwa</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Margherita classica <span class="menu-item-badges"><span class="badge badge-vege">vege</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">31 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pomidory San Marzano DOP, mozzarella FDL, bazylia</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Margherita di Bufala <span class="menu-item-badges"><span class="badge badge-vege">vege</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">36 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pomidory San Marzano DOP, mozzarella di bufala, bazylia</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Salame</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">37 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pomidory San Marzano DOP, mozzarella FDL, salami napoli, bazylia, parmezan</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Prosciutto e Funghi</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">38 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pomidory San Marzano DOP, mozzarella FDL, prosciutto cotto, smażone boczniaki</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Hawaii</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">38 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pomidory San Marzano DOP, mozzarella FDL, prosciutto cotto, ananas</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Piccante</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">39 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pomidory San Marzano DOP, mozzarella FDL, spianata piccante, karmelizowane pomidorki, miód rozmarynowy</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Diavola <span class="menu-item-badges"><span class="badge badge-hot">hot</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">40 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Creme fraiche, mozzarella FDL, spianata piccante, nduja, ostra papryczka</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Pesto di Jalapeno 2.0 <span class="menu-item-badges"><span class="badge badge-hot">hot</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">40 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pesto jalapeno, creme fraiche, mozzarella FDL, salsiccia piccante, karmelizowana czerwona cebula</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Pera <span class="menu-item-badges"><span class="badge badge-new">nowość</span><span class="badge badge-vege">vege</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">40 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Creme fraiche, mozzarella FDL, gruszka, gorgonzola, karmelizowane orzechy włoskie</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Salame Giallo <span class="menu-item-badges"><span class="badge badge-hot">hot</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">41 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Krem z żółtych pomidorów, mozzarella FDL, salami piccante ventricina, mascarpone nduja, bazylia</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Reggina</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">41 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pomidory San Marzano DOP, mozzarella FDL, prosciutto crudo, rukola, karmelizowane pomidorki, parmezan</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Formaggi <span class="menu-item-badges"><span class="badge badge-vege">vege</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">41 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Creme fraiche, mozzarella FDL, taleggio, gorgonzola, parmezan</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Barbabietola <span class="menu-item-badges"><span class="badge badge-new">nowość</span><span class="badge badge-vege">vege</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">41 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pesto ze szpinaku, burak, kozi ser, figa, płatki migdałów, miód z chilli</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Campagnola <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">42 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Creme fraiche, mozzarella FDL, guanciale, talarki ziemniaka, czerwona cebula, pecorino Romano</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Nduja <span class="menu-item-badges"><span class="badge badge-hot">hot</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">42 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pomidory San Marzano, nduja, kolorowe pomidorki, straciatella, bazylia</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Mortadela</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">43 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pomidory San Marzano, mozzarella FDL, mortadela bologna, pesto pistacjowe, bazylia, parmezan</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Piccante con Ricotta <span class="menu-item-badges"><span class="badge badge-hot">hot</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">44 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pomidory San Marzano DOP, mozzarella FDL, salsiccia piccante, nduja, papryczki jalapeno, karmelizowana czerwona cebula, ricotta ziołowo-miodowa</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Tartuffo Delicato <span class="menu-item-badges"><span class="badge badge-new">nowość</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">44 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Creme fraiche, pasta truflowa, mozzarella FDL, coppa picante, rukola, mascarpone</p>
+                        </div>
+
+                                                <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Salmone Affumicato</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">45 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Creme fraiche, mozzarella FDL, talarki ziemniaka, łosoś wędzony, cebula czerwona, mascarpone, koperek</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Spinachi <span class="menu-item-badges"><span class="badge badge-new">nowość</span><span class="badge badge-vege">vege</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">45 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Creme fraiche, mozzarella FDL, szpinak, suszone pomidorki cherry, pesto bazyliowe, burrata, prażone płatki migdałów</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Tartuffo <span class="menu-item-badges"><span class="badge badge-new">nowość</span><span class="badge badge-hot">hot</span></span></span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">46 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Creme fraiche, pasta truflowa, mozzarella FDL, prosciutto cotto, pomidorki cherry, straciatella, chilli</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Basilico e Bresaola</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">49 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Pesto bazyliowe, mozzarella FDL, bresaola, konfitowane pomidorki cherry, ricotta truflowa, rukola</p>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Gamberi e Chorizo</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">49 zł</span>
+                            </div>
+                            <p class="menu-item-desc">Creme fraiche, mozzarella FDL, marynowane krewetki, chorizo, cytrynowe mascarpone, natka pietruszki</p>
+                        </div>
+
+                        <!-- Dodatki do pizzy -->
+                        <div class="menu-item menu-item--extras">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Sos: bazyliowy / truflowy / aioli</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">+4 zł</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item menu-item--extras">
+                            <div class="menu-item-row">
+                                <span class="menu-item-name">Dodaj burratę do swojej pizzy</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">+12 zł</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /#cat-pizza -->
+
+                </div>
+                <!-- /.menu-content -->
+
+            </div>
+            <!-- /.menu-view -->
+
+        </div>
+        <!-- /.menu-page-wrap -->
+
+        <!-- ============================================================
+            FOOTER
+            ============================================================ -->
+        <footer class="noise-overlay">
+            <div class="footer-logo">
+                <center>
+                <img src="media/img/logo-nav.png" alt="CIAO Grodzisk">
+                </center>
+            </div>
+
+            <ul class="footer-nav">
+                <li><a href="index.html#o-nas">O nas</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="index.html#rezerwacja">Rezerwacja</a></li>
+                <li><a href="index.html#kontakt">Kontakt</a></li>
+            </ul>
+
+            <div class="footer-socials">
+                <a href="#" class="footer-social-btn" aria-label="Instagram" title="Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+                </svg>
+                </a>
+                <a href="https://www.facebook.com/ciaogrodzisk/" target="_blank" class="footer-social-btn" aria-label="Facebook" title="Facebook">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+                </a>
+                <a href="#" class="footer-social-btn" aria-label="TripAdvisor" title="TripAdvisor">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3C7 3 3.5 5.5 2 9h3.5a4.5 4.5 0 1 1 0 2H2.2A10 10 0 0 0 12 21a10 10 0 0 0 9.8-10H18.5a4.5 4.5 0 1 1 0-2H22C20.5 5.5 17 3 12 3z"/>
+                    <circle cx="7" cy="14" r="1.5"/>
+                    <circle cx="17" cy="14" r="1.5"/>
+                </svg>
+                </a>
+                <a href="#" class="footer-social-btn" aria-label="Google" title="Google">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21.8 10.2H12v3.6h5.6c-.5 2.5-2.7 4.2-5.6 4.2a6 6 0 0 1 0-12c1.5 0 2.9.6 4 1.5l2.6-2.6A10 10 0 1 0 12 22c5.5 0 10-4 10-10 0-.6-.1-1.2-.2-1.8z"/>
+                </svg>
+                </a>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2025 CIAO Grodzisk. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </footer>
+
+    </body>
+</html>
